@@ -1,0 +1,50 @@
+{
+  "name": "@fileferry/fake-dropbox",
+  "version": "0.1.0",
+  "description": "In-memory fake of the Dropbox HTTP API v2 endpoints used for sharing, with fault injection. For tests and demos.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "testing",
+    "fake",
+    "dropbox",
+    "fault-injection"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spaulah/fileferry.git",
+    "directory": "packages/fake-dropbox"
+  },
+  "homepage": "https://github.com/spaulah/fileferry#readme",
+  "bugs": {
+    "url": "https://github.com/spaulah/fileferry/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
