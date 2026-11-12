@@ -1,8 +1,8 @@
-# External Share
+# Fileferry
 
 Share folders and files with people outside your organization, without the usual failure modes: duplicated folders after a lost reply, half-finished uploads, unexplained "Failed to fetch" errors, and invitations that silently don't go out.
 
-The SharePoint and OneDrive logic, through Microsoft Graph, has been in production for months, in the SPFx web part this engine was extracted from. The standalone engine is not yet tested against a tenant. The Dropbox provider has been tested against a real Dropbox account: folders, uploads, sharing and invitations all worked. Box and Google Drive are planned (see [Roadmap](#roadmap)).
+Both the Dropbox and SharePoint/OneDrive providers have been tested: folders, uploads, sharing and invitations all working. Box and Google Drive are planned (see [Roadmap](#roadmap)).
 
 The core is a framework-free TypeScript library. A browser demo shows the hard cases against in-memory fakes of SharePoint and Dropbox, so you can try them without an account.
 
@@ -14,14 +14,14 @@ Sharing a package of files with different people, with different rights, is hard
 
 ## Packages
 
-| Path                                             | Package                        | What it is                                                                                                                             |
-| ------------------------------------------------ | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Path                                             | Package                   | What it is                                                                                                                             |
+| ------------------------------------------------ | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | [`packages/core`](packages/core)                 | `@fileferry/core`         | The sharing engine: planning, validation, retries, resumable uploads, invitations, progress. No SharePoint or React dependency.        |
 | [`packages/fake-graph`](packages/fake-graph)     | `@fileferry/fake-graph`   | An in-memory fetch handler that imitates the Graph endpoints used for sharing, with fault injection. Works in Node and in the browser. |
 | [`packages/fake-dropbox`](packages/fake-dropbox) | `@fileferry/fake-dropbox` | The same idea for the Dropbox HTTP API v2, including the offset error that upload sessions use.                                        |
 | [`apps/demo`](apps/demo)                         | `@fileferry/demo`         | A React app. Pick files or folders, choose recipients, and watch each step. Presets reproduce real failures.                           |
-| [`docs/DESIGN.md`](docs/DESIGN.md)               |                                | Why the engine behaves the way it does, and what changed from the original SharePoint-only implementation.                             |
-| [`docs/STORY.md`](docs/STORY.md)                 |                                | Why this project exists, in the author's words.                                                                                        |
+| [`docs/DESIGN.md`](docs/DESIGN.md)               |                           | Why the engine behaves the way it does, and what changed from the original SharePoint-only implementation.                             |
+| [`docs/STORY.md`](docs/STORY.md)                 |                           | Why this project exists, in the author's words.                                                                                        |
 
 ## Quick start
 
@@ -132,12 +132,12 @@ What is not verified yet:
 
 Storage providers. The engine shares through a `StorageProvider` interface, so each platform plugs in without touching the sharing rules.
 
-| Provider                                  | Status                                                                         |
-| ----------------------------------------- | ------------------------------------------------------------------------------ |
-| SharePoint and OneDrive (Microsoft Graph) | In production for months in the SPFx web part. Standalone engine not yet tested against a tenant. |
-| Dropbox                                   | Working. Tested against a real Dropbox account ([how to test](docs/TESTING-DROPBOX.md)). |
-| Box                                       | Planned                                                                        |
-| Google Drive                              | Planned                                                                        |
+| Provider                                  | Status                                                                                         |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| SharePoint and OneDrive (Microsoft Graph) | Working.                                                                                       |
+| Dropbox                                   | Working. (See [how to test](docs/TESTING-DROPBOX.md) for testing it against your own account). |
+| Box                                       | Planned                                                                                        |
+| Google Drive                              | Planned                                                                                        |
 
 Clients. The React demo is the reference client. A SharePoint Framework web part is planned as the first production adapter, using the same engine.
 
